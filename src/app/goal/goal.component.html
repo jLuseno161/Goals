@@ -1,0 +1,21 @@
+<!-- working on the goal project -->
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <h2>String Interpolation</h2>
+      <ul *ngFor="let goal of goals; let i = index">
+        <li appStrikethrough>{{goal.name}}</li>
+        <!-- input prop binding -->
+        <!-- nested component using its selector -->
+        <button (click)='toggleDetails(i)'>Toggle Description</button>
+        <app-goal-detail *ngIf='goal.showDescription'[goal]='goal' (isComplete)='deleteGoal($event,i)'></app-goal-detail>
+      </ul>
+    </div>
+    <div class="col-md-6">
+      <app-goal-form (addGoal)="addNewGoal($event)"></app-goal-form>
+    </div>
+  </div>
+
+  <!-- ifstatement -->
+  <p *ngIf='goals.length > 5'>Your goals are too many</p>
+</div>
